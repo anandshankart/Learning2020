@@ -7,62 +7,65 @@ public class DivideInteger {
 
     public static void main(String[] args) {
         DivideInteger solution = new DivideInteger();
-        int answer = solution.divide(-2147483648,-1);
+        int answer = solution.divide(-2147483648, -1);
         System.out.print(answer);
+//        System.out.println(solution.divide(-5, -2));
+//        System.out.println(solution.divide(5, -2));
+//        System.out.println(solution.divide(-5, 2));
+//        System.out.println(solution.divide(5, 2));
 
     }
 
-    public int divide(int dividend, int divisor){
-        System.out.print(dividend +"/"+divisor+" = ");
+    public int divide(int dividend, int divisor) {
+//        System.out.print(dividend + "/" + divisor + " = ");
         //Handle special cases 0/0, 0/1
-        if (dividend==0){
+        if (dividend == 0) {
             return 0;
         }
-        int reminder=dividend;
-        int quotient =0;
+        long reminder = dividend;
+        long quotient = 0;
         boolean sameSign = isSameSign(dividend, divisor);
-        boolean isDividendNegative = isNegative(dividend);
-        boolean isDivisorNegative = isNegative(divisor);
 
         //1 : If any negative numbers Reverse the sign. Dont worry we'll restore it back.
-        if(isDividendNegative){
-            reminder = dividend * -1;
-        }
-        if (isDivisorNegative){
-            divisor = divisor * -1;
-        }
+        reminder = getAbsoluteValue(dividend);
+        long absDivisor = getAbsoluteValue(divisor);
 
-        if(reminder > 2147483647){
-            return 2147483647;
-        }
+        System.out.println(String.format("New Reminder, New Divisor : %s / %s", reminder, absDivisor));
 
-        // 2 : If Proper Fraction -- convert to improper fraction
-        while(reminder>=divisor){
-            reminder=reminder-divisor;
+        while (reminder >= absDivisor) {
+            reminder = reminder - absDivisor;
             quotient++;
         }
 
-        // 2 :  If improper Fraction
-//        if (reminder<divisor){
+//        long answer;
         if (!sameSign)
-            return quotient*-1;
-        else
-            return quotient;
-//        }
+            quotient = quotient * -1;
+//        else
+//            quotient = quotient;
 
-//        return reminder;
+        System.out.println("Quotient : "+quotient);
+        if (quotient > Integer.MAX_VALUE) {
+            return Integer.MAX_VALUE;
+        } else {
+            return (int) quotient;
+        }
     }
 
-    public static boolean isNegative(int num){
-        if (num<=0)
-            return true;
-        else
-            return false;
+    public static long getAbsoluteValue(int number) {
+        long answer = number;
+        if (answer < 0) {
+//            if (number == Integer.MIN_VALUE) {
+//                return Integer.MAX_VALUE;
+//            }
+            return answer * -1;
+        }
+        return answer;
     }
-    public static boolean isSameSign(int num1, int num2){
-        if ((num1<0 && num2>0)||(num1>0 && num2<0)){
+
+    public static boolean isSameSign(long num1, long num2) {
+        if ((num1 < 0 && num2 > 0) || (num1 > 0 && num2 < 0)) {
             return false;
-        }else
+        } else
             return true;
     }
 }
