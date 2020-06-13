@@ -6,17 +6,17 @@ import java.util.List;
 public class Solution {
     public static void main(String[] args) {
         List<String> inputs = Arrays.asList(
-//                "X",
-//                "XX",
-//                "IV",
-//                "IX",
-//                "XIX",
-//                "XIV",
-//                "XXIV",
-//                "XXIX",
-//                "XXX",
-//                "XXXIII",
-//                "XXXIV",
+                "X",
+                "XX",
+                "IV",
+                "IX",
+                "XIX",
+                "XIV",
+                "XXIV",
+                "XXIX",
+                "XXX",
+                "XXXIII",
+                "XXXIV",
                 "LVIII"
 
         );
